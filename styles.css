@@ -286,18 +286,47 @@ h3 {
 }
 
 .section-heading {
-  max-width: 900px;
-  margin-bottom: 38px;
+  margin-bottom: 28px;
 }
 
 .section-label {
   color: var(--violet);
 }
 
+.timeline-lanes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 112px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+.timeline-lanes span {
+  display: block;
+  padding: 12px 16px;
+  border: 5px solid var(--line);
+  box-shadow: 5px 5px 0 var(--line);
+  font-family: "Archivo Black", Impact, sans-serif;
+  font-size: clamp(24px, 4vw, 44px);
+  line-height: 0.96;
+  text-transform: uppercase;
+}
+
+.timeline-lanes span:first-child {
+  background: var(--main-yellow);
+  color: var(--ink);
+  text-align: right;
+}
+
+.timeline-lanes span:last-child {
+  grid-column: 3;
+  background: var(--side-pink);
+  color: var(--white);
+}
+
 .timeline {
   position: relative;
   display: grid;
-  gap: 30px;
+  gap: 22px;
 }
 
 .timeline::before {
@@ -321,8 +350,8 @@ h3 {
 .timeline-item {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 170px minmax(0, 1fr);
-  gap: 26px;
+  grid-template-columns: minmax(0, 1fr) 112px minmax(0, 1fr);
+  gap: 18px;
   align-items: start;
 }
 
@@ -334,11 +363,12 @@ h3 {
   justify-content: center;
   grid-column: 2;
   align-self: start;
-  padding: 11px 12px;
-  border: 5px solid var(--line);
+  padding: 9px 8px;
+  border: 4px solid var(--line);
   background: var(--main-yellow);
-  box-shadow: 5px 5px 0 var(--line);
+  box-shadow: 4px 4px 0 var(--line);
   font-family: "Archivo Black", Impact, sans-serif;
+  font-size: 14px;
   line-height: 1;
   text-align: center;
   text-transform: uppercase;
@@ -361,16 +391,16 @@ h3 {
 
 .quest-card {
   position: relative;
-  padding: 26px;
+  padding: 22px;
 }
 
 .quest-card::before {
   position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 42px;
-  height: 42px;
-  border: 4px solid var(--line);
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--line);
   background: var(--main-yellow);
   clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 56%, 80% 92%, 50% 70%, 20% 92%, 32% 56%, 2% 35%, 39% 35%);
   content: "";
@@ -388,23 +418,7 @@ h3 {
     var(--white);
 }
 
-.quest-type {
-  display: inline-flex;
-  padding: 6px 10px;
-  border: 3px solid var(--line);
-  box-shadow: 3px 3px 0 var(--line);
-}
-
-.timeline-item--main .quest-type {
-  background: var(--main-blue);
-  color: var(--white);
-}
-
-.timeline-item--side .quest-type {
-  background: var(--side-green);
-}
-
-.quest-card p:not(.quest-type),
+.quest-card p,
 .resume-card p {
   color: var(--muted);
   font-weight: 680;
@@ -413,9 +427,9 @@ h3 {
 .quest-reward {
   display: grid;
   gap: 6px;
-  margin-top: 18px;
-  padding: 16px;
-  border: 4px solid var(--line);
+  margin-top: 14px;
+  padding: 13px;
+  border: 3px solid var(--line);
   background: var(--bg);
 }
 
@@ -428,13 +442,13 @@ h3 {
 .link-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-  margin-top: 18px;
+  gap: 8px;
+  margin-top: 14px;
 }
 
 .link-grid a {
-  padding: 10px 12px;
-  border: 4px solid var(--line);
+  padding: 9px 10px;
+  border: 3px solid var(--line);
   background: var(--side-green);
   box-shadow: 3px 3px 0 var(--line);
   font-size: 13px;
@@ -568,6 +582,16 @@ h3 {
   .timeline::before {
     left: 17px;
     transform: none;
+  }
+
+  .timeline-lanes {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-lanes span:first-child,
+  .timeline-lanes span:last-child {
+    grid-column: auto;
+    text-align: left;
   }
 
   .timeline-item {
