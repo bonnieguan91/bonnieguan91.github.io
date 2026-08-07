@@ -441,24 +441,59 @@ h3 {
   text-transform: uppercase;
 }
 
-.link-grid {
+.work-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 14px;
+  gap: 12px;
+  margin-top: 18px;
 }
 
-.link-grid a {
-  padding: 9px 10px;
+.work-card {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
+  padding: 8px;
   border: 3px solid var(--line);
-  background: var(--side-green);
-  box-shadow: 3px 3px 0 var(--line);
-  font-size: 13px;
-  font-weight: 950;
+  background: var(--white);
+  box-shadow: 4px 4px 0 var(--line);
+  color: var(--ink);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.link-grid a:nth-child(2n) {
-  background: var(--main-yellow);
+.work-card:hover,
+.work-card:focus-visible {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--line);
+}
+
+.work-card img {
+  display: block;
+  width: 100%;
+  border: 2px solid var(--line);
+  background: var(--bg);
+  object-fit: cover;
+}
+
+.work-card--book img {
+  aspect-ratio: 5 / 8;
+}
+
+.work-card--album img {
+  aspect-ratio: 1;
+}
+
+.work-card span {
+  color: var(--violet);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.work-card strong {
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  line-height: 1.25;
 }
 
 .badge-grid {
@@ -616,7 +651,6 @@ h3 {
     grid-row: auto;
   }
 
-  .link-grid,
   .badge-grid {
     grid-template-columns: 1fr;
   }
