@@ -139,8 +139,18 @@ p {
 
 h1 {
   margin: 0;
-  font-size: clamp(46px, 8vw, 100px);
-  line-height: 0.94;
+  width: fit-content;
+  font-size: clamp(32px, 3.8vw, 56px);
+  line-height: 1.02;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+
+h1 > span {
+  display: block;
+  white-space: nowrap;
 }
 
 h2 {
@@ -167,6 +177,29 @@ h3 {
   flex-wrap: wrap;
   gap: 14px;
   margin-top: 32px;
+}
+
+.hero__quest-summary {
+  display: grid;
+  gap: 8px;
+  max-width: 720px;
+  margin-top: 24px;
+  padding: 18px;
+  border: 4px solid var(--line);
+  background: var(--white);
+  box-shadow: 5px 5px 0 var(--line);
+}
+
+.hero__quest-summary p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.hero__quest-summary strong {
+  color: var(--violet);
 }
 
 .button {
@@ -386,6 +419,36 @@ h3 {
   grid-row: 1;
 }
 
+.timeline-item--both .quest-card--career {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.timeline-item--both .timeline-date--now {
+  grid-column: 2;
+  grid-row: 1;
+  background: var(--side-pink);
+  color: var(--white);
+}
+
+.timeline-item--both .quest-card--creative {
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  align-self: start;
+}
+
+.timeline-item--both .quest-card--flood {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 18px;
+}
+
+.timeline-item--both .timeline-date--flood {
+  grid-column: 2;
+  grid-row: 2;
+  margin-top: 18px;
+}
+
 .timeline-item--side .timeline-date {
   background: var(--side-pink);
   color: var(--white);
@@ -420,10 +483,79 @@ h3 {
     var(--white);
 }
 
+.quest-card--career {
+  background:
+    linear-gradient(90deg, rgba(45, 125, 255, 0.14), transparent 42%),
+    var(--white);
+}
+
+.quest-card--creative {
+  background:
+    linear-gradient(90deg, rgba(255, 79, 179, 0.16), transparent 42%),
+    var(--white);
+}
+
+.quest-card--flood {
+  background:
+    linear-gradient(90deg, rgba(45, 125, 255, 0.14), transparent 42%),
+    var(--white);
+}
+
 .quest-card p,
 .resume-card p {
   color: var(--muted);
   font-weight: 680;
+}
+
+.quest-card .quest-emphasis {
+  margin-bottom: 14px;
+  color: var(--violet);
+  font-weight: 900;
+}
+
+.career-entry {
+  padding: 16px 0;
+  border-bottom: 3px solid var(--line);
+}
+
+.career-entry:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.career-entry__heading {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.career-entry__heading h4 {
+  margin: 0;
+  color: var(--violet);
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.career-entry__heading span {
+  flex: 0 0 auto;
+  padding: 4px 6px;
+  border: 2px solid var(--line);
+  background: var(--main-yellow);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.quest-points {
+  display: grid;
+  gap: 9px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-weight: 680;
+  line-height: 1.4;
 }
 
 .quest-reward {
@@ -441,11 +573,80 @@ h3 {
   text-transform: uppercase;
 }
 
+.quest-reward--career {
+  gap: 9px;
+  margin-top: 18px;
+  background: var(--side-green);
+}
+
+.quest-reward--career span {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.quest-reward--creative,
+.quest-reward--social {
+  gap: 9px;
+  margin-top: 20px;
+  background: var(--main-yellow);
+}
+
+.quest-reward--social {
+  background: var(--side-green);
+}
+
+.quest-reward--creative span,
+.quest-reward--social span {
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 .work-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
   margin-top: 18px;
+}
+
+.work-group--books .work-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.work-group--books .work-card {
+  padding: 6px;
+}
+
+.work-group--books .work-card strong {
+  font-size: 11px;
+}
+
+.work-group--books .work-card span {
+  font-size: 9px;
+}
+
+.work-group + .work-group {
+  margin-top: 22px;
+}
+
+.work-group h4 {
+  display: inline-block;
+  margin: 18px 0 0;
+  padding: 6px 9px;
+  border: 3px solid var(--line);
+  background: var(--main-yellow);
+  box-shadow: 3px 3px 0 var(--line);
+  font-size: 14px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.work-group + .work-group h4 {
+  background: var(--side-green);
 }
 
 .work-card {
@@ -525,8 +726,11 @@ h3 {
   display: block;
   margin-top: 18px;
   font-family: "Archivo Black", Impact, sans-serif;
-  font-size: clamp(28px, 4vw, 44px);
+  max-width: 100%;
+  font-size: clamp(20px, 2.4vw, 30px);
   line-height: 0.96;
+  overflow-wrap: normal;
+  word-break: normal;
   text-transform: uppercase;
 }
 
@@ -564,6 +768,15 @@ h3 {
   color: var(--violet);
   font-size: 20px;
   font-weight: 950;
+}
+
+.contact-heading {
+  padding: 18px;
+  border: 5px solid var(--line);
+  background: var(--side-green);
+  box-shadow: 6px 6px 0 var(--line);
+  font-size: clamp(25px, 3.2vw, 40px);
+  line-height: 1.05;
 }
 
 .contact-list span {
@@ -646,9 +859,15 @@ h3 {
   }
 
   .timeline-item--main .quest-card,
-  .timeline-item--side .quest-card {
+  .timeline-item--side .quest-card,
+  .timeline-item--both .quest-card--career,
+  .timeline-item--both .quest-card--flood,
+  .timeline-item--both .quest-card--creative,
+  .timeline-item--both .timeline-date--now,
+  .timeline-item--both .timeline-date--flood {
     grid-column: auto;
     grid-row: auto;
+    margin-top: 0;
   }
 
   .badge-grid {
@@ -657,6 +876,19 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(28px, 8.5vw, 42px);
+  }
+
+  h1 > span {
+    white-space: normal;
+  }
+
+  .career-entry__heading {
+    display: grid;
+    justify-content: start;
   }
 }
 
