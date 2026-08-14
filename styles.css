@@ -645,6 +645,11 @@ h3 {
   text-transform: uppercase;
 }
 
+.work-group h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .work-group + .work-group h4 {
   background: var(--side-green);
 }
