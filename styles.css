@@ -424,29 +424,35 @@ h3 {
   grid-row: 1;
 }
 
-.timeline-item--both .timeline-date--now {
+.timeline-date--now {
   grid-column: 2;
   grid-row: 1;
   background: var(--side-pink);
   color: var(--white);
 }
 
+.timeline-date--game {
+  grid-column: 2;
+  grid-row: 1;
+  margin-top: 82px;
+  background: var(--side-pink);
+  color: var(--white);
+}
+
+.timeline-item--main .quest-card--game-release {
+  grid-column: 3;
+  grid-row: 1;
+}
+
 .timeline-item--both .quest-card--creative {
   grid-column: 3;
-  grid-row: 1 / span 2;
+  grid-row: 1;
   align-self: start;
 }
 
-.timeline-item--both .quest-card--flood {
+.timeline-item--july .quest-card--flood {
   grid-column: 1;
-  grid-row: 2;
-  margin-top: 18px;
-}
-
-.timeline-item--both .timeline-date--flood {
-  grid-column: 2;
-  grid-row: 2;
-  margin-top: 18px;
+  grid-row: 1;
 }
 
 .timeline-item--side .timeline-date {
@@ -689,6 +695,22 @@ h3 {
   aspect-ratio: 1;
 }
 
+.work-card--game img {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.work-card--game small {
+  color: var(--body);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.quest-card--game-release .work-card {
+  margin-top: 18px;
+}
+
 .work-card span {
   color: var(--violet);
   font-size: 11px;
@@ -866,10 +888,16 @@ h3 {
   .timeline-item--main .quest-card,
   .timeline-item--side .quest-card,
   .timeline-item--both .quest-card--career,
-  .timeline-item--both .quest-card--flood,
+  .timeline-item--july .quest-card--flood,
   .timeline-item--both .quest-card--creative,
-  .timeline-item--both .timeline-date--now,
-  .timeline-item--both .timeline-date--flood {
+  .timeline-item--both .timeline-date--now {
+    grid-column: auto;
+    grid-row: auto;
+    margin-top: 0;
+  }
+
+  .timeline-date--game,
+  .timeline-item--main .quest-card--game-release {
     grid-column: auto;
     grid-row: auto;
     margin-top: 0;
