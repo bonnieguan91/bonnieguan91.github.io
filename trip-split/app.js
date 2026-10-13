@@ -4,6 +4,21 @@
   const STORAGE_KEY = "trip-split-v1";
   let state = loadState();
   let pendingReceipt = "";
+  let receiptZoom = 1;
+
+  function setReceiptZoom(nextZoom) {
+    receiptZoom = Math.min(3, Math.max(.5, nextZoom));
+    document.querySelector("#receiptDialogImage").style.transform = `scale(${receiptZoom})`;
+    document.querySelector("#resetReceiptZoom").textContent = `${Math.round(receiptZoom * 100)}%`;
+  }
+
+  function openReceiptDialog(source, title) {
+    const dialog = document.querySelector("#receiptDialog");
+    document.querySelector("#receiptDialogTitle").textContent = title || "查看凭证";
+    document.querySelector("#receiptDialogImage").src = source;
+    setReceiptZoom(1);
+    dialog.showModal();
+  }
 
   function loadState() {
     try {
@@ -99,7 +114,7 @@
     list.innerHTML = state.expenses.length ? state.expenses.slice().reverse().map((expense) => `
       <article class="expense-item">
         <span class="expense-icon" aria-hidden="true">⌁</span>
-        <div><h3>${escapeHtml(expense.title)}</h3><p>${escapeHtml(formatDate(expense.date))} · ${escapeHtml(personName(expense.payerId))} 付款<br>${expense.participantIds.map(personName).map(escapeHtml).join("、")} 分摊</p>${expense.receipt ? `<a class="receipt-thumb" href="${expense.receipt}" target="_blank" rel="noopener" aria-label="查看 ${escapeHtml(expense.title)} 的凭证图片"><img src="${expense.receipt}" alt="${escapeHtml(expense.title)} 凭证"><span>查看凭证</span></a>` : ""}</div>
+        <div><h3>${escapeHtml(expense.title)}</h3><p>${escapeHtml(formatDate(expense.date))} · ${escapeHtml(personName(expense.payerId))} 付款<br>${expense.participantIds.map(personName).map(escapeHtml).join("、")} 分摊</p>${expense.receipt ? `<button class="receipt-thumb" type="button" data-view-receipt="${expense.id}" aria-label="放大查看 ${escapeHtml(expense.title)} 的凭证图片"><img src="${expense.receipt}" alt="${escapeHtml(expense.title)} 凭证"><span>放大查看</span></button>` : ""}</div>
         <strong class="amount">${money(expense.amountCents)}</strong>
         <button class="delete" type="button" data-remove-expense="${expense.id}" aria-label="删除 ${escapeHtml(expense.title)}">×</button>
       </article>
@@ -390,8 +405,21 @@
   document.querySelector("#selectAll").addEventListener("click", () => document.querySelectorAll('input[name="participants"]').forEach((input) => { input.checked = true; }));
   document.querySelector("#selectNone").addEventListener("click", () => document.querySelectorAll('input[name="participants"]').forEach((input) => { input.checked = false; }));
   document.querySelector("#exportButton").addEventListener("click", exportExcel);
+  document.querySelector("#closeReceiptDialog").addEventListener("click", () => document.querySelector("#receiptDialog").close());
+  document.querySelector("#zoomInReceipt").addEventListener("click", () => setReceiptZoom(receiptZoom + .25));
+  document.querySelector("#zoomOutReceipt").addEventListener("click", () => setReceiptZoom(receiptZoom - .25));
+  document.querySelector("#resetReceiptZoom").addEventListener("click", () => setReceiptZoom(1));
+  document.querySelector("#receiptDialog").addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) event.currentTarget.close();
+  });
 
   document.addEventListener("click", (event) => {
+    const receiptButton = event.target.closest("[data-view-receipt]");
+    if (receiptButton) {
+      const expense = state.expenses.find((item) => item.id === receiptButton.dataset.viewReceipt);
+      if (expense?.receipt) openReceiptDialog(expense.receipt, `${expense.title} · 凭证`);
+      return;
+    }
     const personId = event.target.dataset.removePerson;
     if (personId) {
       if (state.expenses.some((expense) => expense.payerId === personId || expense.participantIds.includes(personId))) {

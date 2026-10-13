@@ -89,6 +89,21 @@
     </section>
   </main>
 
+  <dialog id="receiptDialog" class="receipt-dialog" aria-labelledby="receiptDialogTitle">
+    <div class="receipt-dialog__header">
+      <h2 id="receiptDialogTitle">查看凭证</h2>
+      <button id="closeReceiptDialog" type="button" aria-label="关闭凭证图片">×</button>
+    </div>
+    <div class="receipt-dialog__canvas">
+      <img id="receiptDialogImage" alt="放大的凭证图片">
+    </div>
+    <div class="receipt-dialog__tools" aria-label="图片缩放工具">
+      <button id="zoomOutReceipt" type="button" aria-label="缩小图片">−</button>
+      <button id="resetReceiptZoom" type="button">100%</button>
+      <button id="zoomInReceipt" type="button" aria-label="放大图片">＋</button>
+    </div>
+  </dialog>
+
   <nav class="mobile-nav" aria-label="手机快捷导航">
     <a href="#peopleSection"><span>01</span>成员</a>
     <a href="#expenseSection"><span>02</span>记账</a>
