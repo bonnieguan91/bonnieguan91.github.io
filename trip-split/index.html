@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3e9">
+  <title>旅伴账本｜旅行 AA 费用结算</title>
+  <meta name="description" content="记录多人旅行开支，自动计算每个人应付、实付和最终转账方案。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow">TRIP SPLIT · 旅行分账</p>
+      <h1>一起出发，<br><em>清楚结账。</em></h1>
+      <p class="intro">记下谁付了什么、哪些人参加，自动算出最后谁该转给谁。</p>
+      <div class="hero__stats" aria-live="polite">
+        <span><b id="heroPeople">0</b> 位旅伴</span>
+        <span><b id="heroExpenses">0</b> 笔开支</span>
+        <span><b id="heroTotal">¥0.00</b> 总费用</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section id="peopleSection" class="panel panel--people" aria-labelledby="peopleTitle">
+      <div class="section-heading">
+        <span>01</span>
+        <div><h2 id="peopleTitle">添加同行人</h2><p>先把这次旅行的成员加进来</p></div>
+      </div>
+      <form id="personForm" class="inline-form">
+        <label class="sr-only" for="personName">同行人姓名</label>
+        <input id="personName" maxlength="12" placeholder="例如：小林" autocomplete="off" required>
+        <button class="button button--dark" type="submit">添加</button>
+      </form>
+      <div id="peopleList" class="people-list"></div>
+    </section>
+
+    <section id="expenseSection" class="panel panel--expense" aria-labelledby="expenseTitle">
+      <div class="section-heading">
+        <span>02</span>
+        <div><h2 id="expenseTitle">记录一笔开支</h2><p>可选择由部分成员共同分摊</p></div>
+      </div>
+      <form id="expenseForm" class="expense-form">
+        <label>项目<input id="expenseTitleInput" maxlength="24" placeholder="例如：海鲜晚餐" required></label>
+        <label>日期<input id="expenseDate" type="date" required></label>
+        <label>金额（元）<input id="expenseAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required></label>
+        <label>付款人<select id="expensePayer" required></select></label>
+        <label class="receipt-field">凭证图片（可选）
+          <span class="upload-control">
+            <input id="expenseReceipt" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
+            <span id="uploadText">选择收据或付款截图</span>
+          </span>
+        </label>
+        <div id="receiptPreview" class="receipt-preview" hidden>
+          <img id="receiptPreviewImage" alt="凭证图片预览">
+          <button id="removeReceipt" type="button">移除图片</button>
+        </div>
+        <fieldset>
+          <legend>参与分摊的人</legend>
+          <div class="check-actions"><button id="selectAll" type="button">全选</button><button id="selectNone" type="button">清空</button></div>
+          <div id="participantChecks" class="participant-checks"></div>
+        </fieldset>
+        <button class="button button--accent" type="submit">记下这笔费用</button>
+        <p id="formHint" class="form-hint" role="status"></p>
+      </form>
+    </section>
+
+    <section id="ledgerSection" class="panel panel--ledger" aria-labelledby="ledgerTitle">
+      <div class="section-heading">
+        <span>03</span>
+        <div><h2 id="ledgerTitle">旅行账单</h2><p>每笔开支都可以删除后重新记录</p></div>
+      </div>
+      <div id="expenseList" class="expense-list"></div>
+    </section>
+
+    <section id="settlementSection" class="panel panel--settlement" aria-labelledby="settlementTitle">
+      <div class="section-heading">
+        <span>04</span>
+        <div><h2 id="settlementTitle">最终结算</h2><p>按下面的方式转账，大家就结清了</p></div>
+      </div>
+      <div id="balances" class="balances"></div>
+      <div class="settlement-label">建议转账</div>
+      <div id="transfers" class="transfers"></div>
+      <div class="settlement-actions">
+        <a id="exportButton" class="export-button" href="#" download>导出 Excel</a>
+        <button id="resetButton" class="reset-button" type="button">清空本次旅行</button>
+      </div>
+    </section>
+  </main>
+
+  <nav class="mobile-nav" aria-label="手机快捷导航">
+    <a href="#peopleSection"><span>01</span>成员</a>
+    <a href="#expenseSection"><span>02</span>记账</a>
+    <a href="#ledgerSection"><span>03</span>账单</a>
+    <a href="#settlementSection"><span>04</span>结算</a>
+  </nav>
+
+  <footer>旅伴账本 · 数据仅保存在你的浏览器中</footer>
+  <script src="app.js"></script>
+</body>
+</html>
