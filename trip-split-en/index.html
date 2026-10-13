@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3e9">
+  <title>Trip Split | Group Travel Expense Calculator</title>
+  <meta name="description" content="Track group travel expenses and automatically calculate who should pay whom.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__inner">
+      <p class="eyebrow">TRIP SPLIT · TRAVEL EXPENSES</p>
+      <h1>Travel together.<br><em>Settle up clearly.</em></h1>
+      <p class="intro">Record who paid, who joined each expense, and automatically work out who owes whom.</p>
+      <div class="hero__stats" aria-live="polite">
+        <span><b id="heroPeople">0</b> travelers</span>
+        <span><b id="heroExpenses">0</b> expenses</span>
+        <span><b id="heroTotal">¥0.00</b> total</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section id="peopleSection" class="panel panel--people" aria-labelledby="peopleTitle">
+      <div class="section-heading">
+        <span>01</span>
+        <div><h2 id="peopleTitle">Add travelers</h2><p>Start with everyone joining the trip</p></div>
+      </div>
+      <form id="personForm" class="inline-form">
+        <label class="sr-only" for="personName">Traveler name</label>
+        <input id="personName" maxlength="24" placeholder="For example: Jamie" autocomplete="off" required>
+        <button class="button button--dark" type="submit">Add</button>
+      </form>
+      <div id="peopleList" class="people-list"></div>
+    </section>
+
+    <section id="expenseSection" class="panel panel--expense" aria-labelledby="expenseTitle">
+      <div class="section-heading">
+        <span>02</span>
+        <div><h2 id="expenseTitle">Add an expense</h2><p>Split it between everyone or selected travelers</p></div>
+      </div>
+      <form id="expenseForm" class="expense-form">
+        <label>Description<input id="expenseTitleInput" maxlength="40" placeholder="For example: Dinner" required></label>
+        <label>Date<input id="expenseDate" type="date" required></label>
+        <label>Amount (CNY)<input id="expenseAmount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00" required></label>
+        <label>Paid by<select id="expensePayer" required></select></label>
+        <label class="receipt-field">Receipt image (optional)
+          <span class="upload-control">
+            <input id="expenseReceipt" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
+            <span id="uploadText">Choose a receipt or payment screenshot</span>
+          </span>
+        </label>
+        <div id="receiptPreview" class="receipt-preview" hidden>
+          <img id="receiptPreviewImage" alt="Receipt preview">
+          <button id="removeReceipt" type="button">Remove image</button>
+        </div>
+        <fieldset>
+          <legend>Who shares this expense?</legend>
+          <div class="check-actions"><button id="selectAll" type="button">Select all</button><button id="selectNone" type="button">Clear</button></div>
+          <div id="participantChecks" class="participant-checks"></div>
+        </fieldset>
+        <button class="button button--accent" type="submit">Save this expense</button>
+        <p id="formHint" class="form-hint" role="status"></p>
+      </form>
+    </section>
+
+    <section id="ledgerSection" class="panel panel--ledger" aria-labelledby="ledgerTitle">
+      <div class="section-heading">
+        <span>03</span>
+        <div><h2 id="ledgerTitle">Trip ledger</h2><p>Review or remove recorded expenses</p></div>
+      </div>
+      <div id="expenseList" class="expense-list"></div>
+    </section>
+
+    <section id="settlementSection" class="panel panel--settlement" aria-labelledby="settlementTitle">
+      <div class="section-heading">
+        <span>04</span>
+        <div><h2 id="settlementTitle">Final settlement</h2><p>Use these transfers to settle the group</p></div>
+      </div>
+      <div id="balances" class="balances"></div>
+      <div class="settlement-label">SUGGESTED TRANSFERS</div>
+      <div id="transfers" class="transfers"></div>
+      <div class="settlement-actions">
+        <a id="exportButton" class="export-button" href="#" download>Export Excel</a>
+        <button id="resetButton" class="reset-button" type="button">Clear this trip</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="receiptDialog" class="receipt-dialog" aria-labelledby="receiptDialogTitle">
+    <div class="receipt-dialog__header">
+      <h2 id="receiptDialogTitle">View receipt</h2>
+      <button id="closeReceiptDialog" type="button" aria-label="Close receipt image">×</button>
+    </div>
+    <div class="receipt-dialog__canvas">
+      <img id="receiptDialogImage" alt="Enlarged receipt image">
+    </div>
+    <div class="receipt-dialog__tools" aria-label="Image zoom controls">
+      <button id="zoomOutReceipt" type="button" aria-label="Zoom out">−</button>
+      <button id="resetReceiptZoom" type="button">100%</button>
+      <button id="zoomInReceipt" type="button" aria-label="Zoom in">＋</button>
+    </div>
+  </dialog>
+
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="#peopleSection"><span>01</span>People</a>
+    <a href="#expenseSection"><span>02</span>Add</a>
+    <a href="#ledgerSection"><span>03</span>Ledger</a>
+    <a href="#settlementSection"><span>04</span>Settle</a>
+  </nav>
+
+  <footer>Trip Split · Your data stays in this browser</footer>
+  <script src="app.js"></script>
+</body>
+</html>
