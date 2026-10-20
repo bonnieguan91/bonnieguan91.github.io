@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f3e9">
+  <title>Plans | Trip Split</title>
+  <meta name="description" content="Compare Trip Split plans for group travel expense tracking.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="pricing-page">
+  <header class="pricing-hero">
+    <div class="pricing-hero__inner">
+      <a class="back-link" href="index.html">← Back to Trip Split</a>
+      <p class="eyebrow">TRIP SPLIT · PLANS</p>
+      <h1>Choose your plan.</h1>
+      <p class="intro">Start free and upgrade when your trips need more.</p>
+    </div>
+  </header>
+
+  <main class="pricing-layout">
+    <section class="panel panel--pricing" aria-labelledby="pricingTitle">
+      <div class="section-heading">
+        <span>01</span>
+        <div><h2 id="pricingTitle">Simple, flexible pricing</h2><p>One plan for every kind of traveler</p></div>
+      </div>
+      <div class="pricing-intro">
+        <strong>Full features are open during the beta</strong>
+        <p>You can currently test unlimited travelers, receipt images, settlement, and Excel export at no charge.</p>
+      </div>
+      <div class="price-grid">
+        <article class="price-card">
+          <p class="price-card__name">Free</p>
+          <p class="price"><b>¥0</b><span>forever</span></p>
+          <ul><li>Up to 3 travelers</li><li>Automatic settlement</li><li>Data stored in this browser</li></ul>
+          <a class="price-button price-button--current" href="index.html">Use the beta</a>
+        </article>
+        <article class="price-card">
+          <p class="price-card__name">Monthly</p>
+          <p class="price"><b>¥9.9</b><span>/ month</span></p>
+          <ul><li>Unlimited travelers</li><li>Receipt image uploads</li><li>Full trip records</li></ul>
+          <button class="price-button" type="button" data-plan="Monthly · ¥9.9/month">Choose monthly</button>
+        </article>
+        <article class="price-card price-card--featured">
+          <span class="recommended">BEST VALUE</span>
+          <p class="price-card__name">Annual</p>
+          <p class="price"><b>¥88</b><span>/ year</span></p>
+          <ul><li>All member features</li><li>Unlimited travelers and receipts</li><li>About ¥7.33 per month</li></ul>
+          <button class="price-button" type="button" data-plan="Annual · ¥88/year">Choose annual</button>
+        </article>
+        <article class="price-card">
+          <p class="price-card__name">Lifetime</p>
+          <p class="price"><b>¥299</b><span>one-time</span></p>
+          <ul><li>Lifetime access to core features</li><li>Unlimited travelers</li><li>Receipt image uploads</li></ul>
+          <button class="price-button" type="button" data-plan="Lifetime · ¥299">Unlock lifetime</button>
+        </article>
+      </div>
+      <p class="pricing-note">Lifetime access covers the current core features. Future high-cost AI services, extra cloud storage, or paid third-party services may be priced separately.</p>
+    </section>
+  </main>
+
+  <dialog id="paymentDialog" class="payment-dialog" aria-labelledby="paymentTitle">
+    <button id="closePaymentDialog" class="dialog-close" type="button" aria-label="Close">×</button>
+    <span class="dialog-icon" aria-hidden="true">¥</span>
+    <h2 id="paymentTitle">Checkout is coming soon</h2>
+    <p id="selectedPlan">Online payment is being prepared.</p>
+    <p class="dialog-detail">No charge will be made and no payment details are collected yet. Full features remain available during the beta.</p>
+    <a class="dialog-pricing-link" href="index.html">Continue with the beta</a>
+  </dialog>
+
+  <footer>Trip Split · Your data stays in this browser</footer>
+  <script src="pricing.js"></script>
+</body>
+</html>
