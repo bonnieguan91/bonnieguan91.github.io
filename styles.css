@@ -439,7 +439,7 @@ h3 {
   color: var(--white);
 }
 
-.timeline-item--main .quest-card--game-release {
+.timeline-item--main .quest-card--october-releases {
   grid-column: 3;
   grid-row: 1;
 }
@@ -635,6 +635,28 @@ h3 {
   font-size: 9px;
 }
 
+.work-group--books .work-card--picture-book {
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1.5fr) minmax(120px, 1fr);
+  grid-template-rows: repeat(3, auto) 1fr;
+  padding: 10px;
+}
+
+.work-group--books .work-card--picture-book img {
+  grid-column: 1;
+  grid-row: 1 / -1;
+}
+
+.work-group--books .work-card--picture-book span,
+.work-group--books .work-card--picture-book strong,
+.work-group--books .work-card--picture-book small {
+  grid-column: 2;
+}
+
+.work-group--books .work-card--picture-book strong {
+  font-size: 15px;
+}
+
 .work-group + .work-group {
   margin-top: 22px;
 }
@@ -700,14 +722,23 @@ h3 {
   object-fit: contain;
 }
 
-.work-card--game small {
+.work-card--picture-book img {
+  aspect-ratio: 525 / 466;
+  object-fit: contain;
+}
+
+.work-card--game small,
+.work-card--picture-book small {
   color: var(--body);
   font-size: 12px;
   font-weight: 700;
   line-height: 1.4;
 }
 
-.quest-card--game-release .work-card {
+.release-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 18px;
 }
 
@@ -897,10 +928,23 @@ h3 {
   }
 
   .timeline-date--game,
-  .timeline-item--main .quest-card--game-release {
+  .timeline-item--main .quest-card--october-releases {
     grid-column: auto;
     grid-row: auto;
     margin-top: 0;
+  }
+
+  .release-grid,
+  .work-group--books .work-card--picture-book {
+    grid-template-columns: 1fr;
+  }
+
+  .work-group--books .work-card--picture-book img,
+  .work-group--books .work-card--picture-book span,
+  .work-group--books .work-card--picture-book strong,
+  .work-group--books .work-card--picture-book small {
+    grid-column: auto;
+    grid-row: auto;
   }
 
   .badge-grid {
